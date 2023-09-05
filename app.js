@@ -12,7 +12,6 @@ const notFound = require('./middleware/notFound')
 const errorHandlerMiddleware = require('./middleware/errorHandlerMiddleware')
 const helmet = require('helmet')
 const xss = require('xss-clean')
-const rateLimit = require('express-rate-limit')
 const mongoSanitize = require('express-mongo-sanitize')
 const influencerRouter = require('./routes/influencerRouter')
 
@@ -36,8 +35,7 @@ app.use(errorHandlerMiddleware)
 
 const start = async () => {
     try {
-       // await connectDB(process.env.MONGO_URI)
-       await connectDB('mongodb+srv://amanpreet:Harman95@cluster0.jk1trot.mongodb.net/Influencers?retryWrites=true&w=majority')
+        await connectDB(process.env.MONGO_URI)
         app.listen(port, console.log(`server running on port ${port}...`))
     } catch (error) {
         console.log(error)
